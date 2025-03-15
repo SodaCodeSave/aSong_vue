@@ -13,10 +13,16 @@ onMounted(async () => {
     try {
         const response = await axios({
             method: 'get',
-            url: 'https://v1.hitokoto.cn/?c=j'
+            url: 'https://international.v1.hitokoto.cn/'
         });
         // 将请求结果赋值给响应式变量
         quote.value = response.data;
+        if (quote.value["from_who"] == "" || quote.value["from_who"] == null) {
+            quote.value["from_who"] = "";
+        }
+        else {
+            quote.value["from_who"] = "——" + quote.value["from_who"];
+        }
     } catch (error) {
         console.error('请求失败:', error);
         quote.value = {
@@ -30,14 +36,11 @@ onMounted(async () => {
 <template>
     <div class="a-song">
         <p>{{ quote["hitokoto"] }}</p>
-        <div>——{{ quote["from_who"] }}</div>
+        <div>{{ quote["from_who"] }}</div>
     </div>
 </template>
 
 <style>
-    .a-song {
-        width: 300px;
-    }
     .a-song p {
         line-height: normal;
     }
