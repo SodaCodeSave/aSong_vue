@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
 html,
 body {
     margin: 0;
@@ -9,6 +12,5 @@ body {
     align-items: center;
     height: 100vh;
     background-color: rgb(241, 229, 201);
-    font-family: "MiSans";
     justify-content: center;
 }
